@@ -1,0 +1,433 @@
+ /* Hide by default on larger screens */
+.mobile-contact, .floating-buttons {
+  display: none;
+}
+
+/* Show only on mobile devices */
+@media (max-width: 768px) {
+  .mobile-contact {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+  }
+
+  .mobile-only-image {
+    width: 100%;
+    max-width: 400px; /* Adjust as needed */
+    height: auto;
+  }
+
+  /* Floating Buttons */
+  .floating-buttons {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    gap: 10px;
+  }
+
+  .floating-btn {
+    width: 50px;
+    height: 50px;
+    background-color: #25D366; /* WhatsApp green */
+    color: white;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+  }
+
+  .floating-btn.call-btn {
+    background-color: #007bff; /* Call button blue */
+  }
+
+  /* Hover effect */
+  .floating-btn:hover {
+    opacity: 0.8;
+  }
+}
+/* Scroll Down Arrow Styles */
+.scroll-down {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.scroll-down a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+    color: white;
+    border-radius: 50%;
+    text-decoration: none;
+    font-size: 24px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.scroll-down a:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Bouncing Animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+.scroll-down i {
+    animation: bounce 1.5s infinite ease-in-out;
+}
+
+.sip-calculator {
+  margin: 20px 0;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.sip-calculator h3 {
+  color: #fff;
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.calculator-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.input-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.input-group label {
+  color: #fff;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+.input-group input {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+  background: rgba(255, 255, 255, 0.25);
+  outline: none;
+}
+
+.result-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.result-group {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.result-item.total {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.chart-container {
+  position: relative;
+  margin-top: 20px;
+  height: 250px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .calculator-container {
+    flex-direction: column;
+  }
+  
+  .chart-container {
+    height: 200px;
+  }
+}
+/* about styles */
+.team-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  gap: 40px;
+}
+
+.team-text {
+  flex: 1;
+  font-size: 13px;
+}
+
+.team-image {
+  flex: 1;
+}
+
+.team-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+  .team-section {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .team-text {
+    text-align: left;
+    color: #fff;
+    line-height: 1.6;
+    font-size: 12px;
+  }
+  .team-image {
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .about-image-container {
+      max-width: 90%; /* Make it fill nicely */
+      padding: 10px;
+  }
+}
+/* Form Container */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 500px; /* Limit width on larger screens */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Form Group */
+.form-group {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* Input Fields */
+.form-group input {
+  width: 100%;
+  padding: 12px 0;
+  background: none;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+/* Label Styling */
+.form-group label {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Input Border Animation */
+.form-group .input-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #007bff; /* Blue accent color */
+  transition: width 0.3s ease;
+}
+
+/* Input Focus and Filled States */
+.form-group input:focus,
+.form-group input:valid {
+  border-bottom-color: transparent;
+}
+
+.form-group input:focus + label,
+.form-group input:valid + label {
+  top: -20px;
+  font-size: 12px;
+  color: #007bff;
+}
+
+.form-group input:focus ~ .input-border,
+.form-group input:valid ~ .input-border {
+  width: 100%;
+}
+
+/* Submit Button Styling (if needed) */
+.work-request input[type="submit"] {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.work-request input[type="submit"]:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 15px;
+  }
+
+  .form-group {
+    margin-bottom: 25px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+  }
+
+  .form-group label {
+    font-size: 14px;
+  }
+
+  .form-group input:focus + label,
+  .form-group input:valid + label {
+    font-size: 10px;
+  }
+
+  .work-request input[type="submit"] {
+    padding: 10px 25px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+}
+.blog-button {
+    position: fixed;
+    right: 20px;
+    bottom: 80px; /* Matches "Hire Us" placement */
+    background-color:rgb(2, 61, 255); /* Same as the "Hire Us" button */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    
+    /* Animation */
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+/* Optional: Add hover effect */
+.blog-button:hover {
+    background-color:rgb(0, 54, 230);
+}
+/* workrequest message */
+#formMessages {
+  margin-top: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#formMessages.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+#formMessages.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: #007BFF; /* Beautiful blue */
+  color: white;
+  padding: 12px 20px;
+  margin-top: 0px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+/* work request submit button */
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  form {
+      padding: 20px;
+  }
+}
