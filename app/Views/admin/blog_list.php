@@ -3,14 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TeamAvenues.com</title>
-    <!-- BOOTSTRAP STYLES-->
+    <title>TeamAvenues.com - Blog Management</title>
     <link href="<?= base_url('asset/assets/css/bootstrap.css') ?>" rel="stylesheet" />
-    <!-- FONTAWESOME STYLES-->
     <link href="<?= base_url('asset/assets/css/font-awesome.css') ?>" rel="stylesheet" />
-    <!-- CUSTOM STYLES-->
     <link href="<?= base_url('asset/assets/css/custom.css') ?>" rel="stylesheet" />
-    <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 <body>
@@ -36,7 +32,7 @@
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
                     <li>
-                        <a href="<?= base_url('admin/dashboard') ?>"><i class="fa fa-desktop"></i>Dashboard </a>
+                        <a href="<?= base_url('admin/dashboard') ?>"><i class="fa fa-desktop"></i>Dashboard</a>
                     </li>
                     <li>
                         <a href="<?= base_url('admin/work-requests') ?>"><i class="fa fa-users"></i>Work Requests <span class="badge">Included</span></a>
@@ -54,7 +50,7 @@
                         <a href="#"><i class="fa fa-lock"></i>Admin Management</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit"></i>My Link Five</a><span class="badge">Upcomming</span></a>
+                        <a href="#"><i class="fa fa-edit"></i>My Link Five</a>
                     </li>
                 </ul>
             </div>
@@ -62,64 +58,42 @@
         <div id="page-wrapper">
             <div id="page-inner">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h2>Blog Management</h2>
-                        <a href="<?= base_url('admin/blog-management/create') ?>" class="btn btn-success" style="margin-bottom:10px;">Add New Blog</a>
+                    <div class="col-lg-12">
+                        <h2>BLOG MANAGEMENT</h2>
+                        <a href="<?= base_url('admin/blog-management/create') ?>" class="btn btn-primary mb-3">Create New Blog</a>
                     </div>
                 </div>
                 <hr />
-
+                <?php if (session()->has('message')): ?>
+                    <div class="alert alert-success"><?= session('message') ?></div>
+                <?php endif; ?>
                 <div class="row">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered">
-                                <thead>
+                    <div class="col-lg-12">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Slug</th>
+                                    <th>Created At</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($blogs as $blog): ?>
                                     <tr>
-                                        <th>#</th>
-                                        <th>Thumbnail</th>
-                                        <th>Title</th>
-                                        <th>Slug</th>
-                                        <th>Featured Video</th>
-                                        <th>Created At</th>
-                                        <th>Actions</th>
+                                        <td><?= esc($blog['id']) ?></td>
+                                        <td><?= esc($blog['title']) ?></td>
+                                        <td><?= esc($blog['slug']) ?></td>
+                                        <td><?= esc($blog['created_at']) ?></td>
+                                        <td>
+                                            <a href="<?= base_url('admin/blog-management/edit/' . $blog['id']) ?>" class="btn btn-sm btn-warning"><i class="fa fa-edit"></i> Edit</a>
+                                            <a href="<?= base_url('admin/blog-management/delete/' . $blog['id']) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this blog?')"><i class="fa fa-trash"></i> Delete</a>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
-                                    <?php if (!empty($blogs)) : ?>
-                                        <?php $i = 1; foreach ($blogs as $blog) : ?>
-                                            <tr>
-                                                <td><?= $i++ ?></td>
-                                                <td>
-                                                    <?php if (!empty($blog['thumbnail'])): ?>
-                                                        <img src="<?= base_url('uploads/blogs/' . $blog['thumbnail']) ?>" width="80" alt="Thumbnail">
-                                                    <?php else: ?>
-                                                        <span>No Image</span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td><?= esc($blog['title']) ?></td>
-                                                <td><?= esc($blog['slug']) ?></td>
-                                                <td>
-                                                    <?php if (!empty($blog['featured_video'])): ?>
-                                                        <a href="<?= esc($blog['featured_video']) ?>" target="_blank"><?= word_limiter($blog['featured_video'], 20) ?></a>
-                                                    <?php else: ?>
-                                                        <span>No Video</span>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td><?= date('d M Y', strtotime($blog['created_at'])) ?></td>
-                                                <td>
-                                                    <a href="<?= base_url('admin/blogs/edit/' . $blog['id']) ?>" class="btn btn-primary btn-sm">Edit</a>
-                                                    <a href="<?= base_url('admin/blogs/delete/' . $blog['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this blog?');">Delete</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else : ?>
-                                        <tr>
-                                            <td colspan="7" class="text-center">No blogs found.</td>
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
-                            </table>
-                        </div>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -132,13 +106,8 @@
             </div>
         </div>
     </div>
-    <!-- /. WRAPPER  -->
-    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
-    <!-- JQUERY SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/jquery-1.10.2.js') ?>"></script>
-    <!-- BOOTSTRAP SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/bootstrap.min.js') ?>"></script>
-    <!-- CUSTOM SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/custom.js') ?>"></script>
 </body>
 </html>

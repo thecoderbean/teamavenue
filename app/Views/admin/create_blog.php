@@ -35,26 +35,31 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-                    <li>
-                        <a href="<?= base_url('admin/dashboard') ?>"><i class="fa fa-desktop"></i>Dashboard </a>
+                <li>
+                        <a href="dashboard" ><i class="fa fa-desktop "></i>Dashboard </a>
                     </li>
+                   
+
                     <li>
-                        <a href="<?= base_url('admin/work-requests') ?>"><i class="fa fa-users"></i>Work Requests <span class="badge">Included</span></a>
+                        <a href="work-requests"><i class="fa fa-users "></i>Users Management  </a>
                     </li>
                     <li class="active-link">
-                        <a href="<?= base_url('admin/blog-management') ?>"><i class="fa fa-rss"></i>Blog Management <span class="badge">Included</span></a>
+                        <a href="blog-management"><i class="fa fa-rss "></i>Blog Management  </a>
+                    </li>
+
+
+                    <li>
+                        <a href="service-management"><i class="fa fa-cogs "></i>Service Management</a>
                     </li>
                     <li>
-                        <a href="<?= base_url('admin/service-management') ?>"><i class="fa fa-cogs"></i>Service Management</a>
+                        <a href="staff-management"><i class="fa fa-user"></i>Staff Management</a>
+                    </li>
+
+                    <li>
+                        <a href="admin-management"><i class="fa fa-lock "></i>Admin Management </a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-user"></i>Staff Management</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-lock"></i>Admin Management</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-edit"></i>My Link Five</a><span class="badge">Upcomming</span></a>
+                        <a href="#"><i class="fa fa-edit "></i>My Link Five </a><span class="badge">deactivated</span>
                     </li>
                 </ul>
             </div>

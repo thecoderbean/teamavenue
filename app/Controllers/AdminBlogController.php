@@ -26,7 +26,7 @@ class AdminBlogController extends Controller
         $data = [
             'blogs' => $this->blogModel->getAllBlogs()
         ];
-        return view('admin/index', $data);
+        return view('admin/blog_list', $data);
     }
 
     public function create()
@@ -35,7 +35,7 @@ class AdminBlogController extends Controller
             return redirect()->to('/admin');
         }
 
-        return view('admin/create');
+        return view('admin/create_blog');
     }
 
     public function store()

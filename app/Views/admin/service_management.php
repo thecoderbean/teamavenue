@@ -52,11 +52,11 @@
                         <a href="service-management"><i class="fa fa-cogs "></i>Service Management</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-user"></i>Staff Management</a>
+                        <a href="staff-management"><i class="fa fa-user"></i>Staff Management</a>
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-lock "></i>Admin Management </a>
+                        <a href="admin-management"><i class="fa fa-lock "></i>Admin Management </a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-edit "></i>My Link Five </a><span class="badge">deactivated</span>
