@@ -1,154 +1,167 @@
-
 /*=============================================================
-    Authour URI: www.binarycart.com
+    Author URI: www.binarycart.com (Modified by Bestin's AI buddy)
     License: Commons Attribution 3.0
 
     http://creativecommons.org/licenses/by/3.0/
+==============================================================*/
 
-    100% To use For Personal And Commercial Use.
-    IN EXCHANGE JUST GIVE US CREDITS AND TELL YOUR FRIENDS ABOUT US
-   
-    ========================================================  */
 /*==============================================
-    GENERAL  STYLES    
-    =============================================*/
+    GENERAL STYLES - Ultra Modern
+===============================================*/
 body {
-    font-family: 'Open Sans', sans-serif;
-    line-height:30px;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #212121;
+    background-color: #FAFAFA;
+    margin: 0;
+    padding: 0;
 }
 
- #wrapper {
+#wrapper {
     width: 100%;
-    margin-top:50px;
+    margin-top: 60px;
 }
 
 #page-wrapper {
-    padding: 15px 15px;
+    padding: 20px;
     min-height: 600px;
-    background:#F3F3F3;
-   
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
-#page-inner {
-    width:100%;
-    margin:10px 20px 10px 0px;
-    background-color:#fff!important;
-    padding:10px;
-    min-height:1050px;
-}
-.pad-top {
-    padding-top:15px;
-}
-/*==============================================
-    MENU STYLES    
-    =============================================*/
 
+#page-inner {
+    width: 100%;
+    margin: 20px 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 1050px;
+}
+
+.pad-top {
+    padding-top: 15px;
+}
+
+/*==============================================
+    MENU STYLES - Ultra Modern Navigation
+===============================================*/
 .sidebar-collapse .nav {
-	padding:0;
-    padding-top:50px;
+    padding: 0;
+    padding-top: 60px;
 }
 
 .sidebar-collapse > .nav > li > a {
-	padding:15px 10px;
-    color: #214761;
-font-weight: 900;
-font-size: 16px;
+    padding: 15px 10px;
+    color: #212121;
+    font-weight: 600;
+    font-size: 16px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
+
 .sidebar-collapse > .nav > li {
-	border-bottom:1px solid #e1e1e1;
+    border-bottom: 1px solid #e0e0e0;
 }
+
 .sidebar-collapse .nav > li > a:hover,
 .sidebar-collapse .nav > li > a:focus {
-	
-	background:#F3F3F3;
-	outline:0;
+    background: #f0f0f0;
+    outline: none;
 }
 
 .navbar-side {
-	border:none;
-	background-color: #fff;
-	
+    border: none;
+    background-color: #ffffff;
 }
+
 .navbar-inverse {
-
-background-color: #214761;
-border-color: #F0F0F0;
-min-height: 80px;
+    background-color: #212121;
+    border-color: #212121;
+    min-height: 80px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
-
 
 .nav > li > a > i {
-    margin-right:10px;
+    margin-right: 10px;
+    color: #64ffda; /* Accent Color */
 }
+
 .logout-spn {
-    float:right;
-    color:#fff;
-    font-size:25px;
-    font-weight:800;
-    margin:20px;
+    float: right;
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 800;
     margin: 10px 25px 10px 50px;
 }
-    .logout-spn a {
-        text-decoration:none;
-    }
+
+.logout-spn a {
+    text-decoration: none;
+}
+
+/* Active Link */
 .active-link {
-    background-color:#f3f3f3;
+    background-color: #e0f7fa;
+    color: #00796b;
 }
-    
+
 /*==============================================
-    DASHBOARD STYLES    
-    =============================================*/
+    DASHBOARD STYLES - Modern Cards
+===============================================*/
 .div-square {
-    padding:5px;
-    border:3px double #e1e1e1;
-    -webkit-border-radius:8px;
-   -moz-border-radius:8px;
-    border-radius:8px;
-    margin:5px;
-
+    padding: 10px;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    margin: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.div-square> a,.div-square> a:hover {
-    color:#808080;
-     text-decoration:none;
+.div-square:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
+
+.div-square > a,
+.div-square > a:hover {
+    color: #424242;
+    text-decoration: none;
+}
+
 /*==============================================
-    FOOTER STYLES     
-    =============================================*/
+    FOOTER STYLES - Clean and Modern
+===============================================*/
 .footer {
-    background-color:#214761;
-    width:100%;
-    color:#fff;
-    padding:20px 50px 20px 50px;
-     padding-left:20px;
+    background-color: #212121;
+    width: 100%;
+    color: #ffffff;
+    padding: 20px 50px;
+    border-top: 1px solid #424242;
+    text-align: center;
 }
 
-
-    .footer > a, .footer>a:hover {
-       
-        color:#fff;
-    }
+.footer > a,
+.footer > a:hover {
+    color: #64ffda;
+    text-decoration: none;
+}
 
 /*==============================================
-    MEDIA QUERIES     
-    =============================================*/
- 
- @media(min-width:768px) {
-     #page-wrapper{
-               margin: 0 0 0 260px;
-        padding: 15px 30px;
+    MEDIA QUERIES
+===============================================*/
+@media (min-width: 768px) {
+    #page-wrapper {
+        margin: 0 0 0 260px;
+        padding: 20px 30px;
         min-height: 1050px;
-		
     }
-	
-	
+
     .navbar-side {
         z-index: 1;
-        position: absolute;
+        position: fixed;
         width: 260px;
-       
+        height: 100%;
+        overflow-y: auto;
+        border-right: 1px solid #e0e0e0;
     }
-
- 
 }
-
-

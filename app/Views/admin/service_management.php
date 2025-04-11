@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+      <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Request - TeamAvenues.com</title>
+    <title>TeamAvenues.com</title>
+	<!-- BOOTSTRAP STYLES-->
     <link href="<?= base_url('asset/assets/css/bootstrap.css') ?>" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
     <link href="<?= base_url('asset/assets/css/font-awesome.css') ?>" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
     <link href="<?= base_url('asset/assets/css/custom.css') ?>" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 <body>
     <div id="wrapper">
@@ -20,7 +24,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img src="<?= base_url('asset/assets/img/logo.png') ?>" />
+                        <img src="<?= base_url('assets/img/logo.png') ?>" />
                     </a>
                 </div>
                 <span class="logout-spn">
@@ -64,39 +68,51 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>EDIT WORK REQUEST</h2>
+                        <h2>SERVICE MANAGEMENT</h2>
+                        <a href="<?= base_url('admin/service-management/add') ?>" class="btn btn-primary">Add New Service</a>
+                        <?php if (session()->getFlashdata('message')): ?>
+                            <div class="alert alert-success"><?= session()->getFlashdata('message') ?></div>
+                        <?php endif; ?>
+                        <?php if (session()->getFlashdata('error')): ?>
+                            <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+                        <?php endif; ?>
                     </div>
                 </div>
                 <hr />
                 <div class="row">
                     <div class="col-lg-12">
-                        <form method="post" action="<?= base_url('admin/edit-request/' . $request['id']) ?>">
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control" value="<?= $request['name'] ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" name="email" class="form-control" value="<?= $request['email'] ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Phone</label>
-                                <input type="text" name="phone" class="form-control" value="<?= $request['phone'] ?>" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Services</label>
-                                <?php $services = json_decode($request['services'], true); ?>
-                                <select name="services[]" class="form-control" multiple required>
-                                    <option value="training" <?= in_array('training', $services) ? 'selected' : '' ?>>Training</option>
-                                    <option value="stock_brokering" <?= in_array('stock_brokering', $services) ? 'selected' : '' ?>>Stock Brokering</option>
-                                    <option value="tax_filing" <?= in_array('tax_filing', $services) ? 'selected' : '' ?>>Tax Filing</option>
-                                    <option value="financial_planning" <?= in_array('financial_planning', $services) ? 'selected' : '' ?>>Financial Planning</option>
-                                    <option value="dmat_account" <?= in_array('dmat_account', $services) ? 'selected' : '' ?>>Dmat Account</option>
-                                    <option value="live_support" <?= in_array('live_support', $services) ? 'selected' : '' ?>>Live Market Support</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                        </form>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Title</th>
+                                    <th>Alt Text</th>
+                                    <th>Image</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($services as $service): ?>
+                                    <tr>
+                                        <td><?= $service['id'] ?></td>
+                                        <td><?= $service['title'] ?></td>
+                                        <td><?= $service['alt_text'] ?></td>
+                                        <td>
+                                            <?php if ($service['image_path']): ?>
+                                                <img src="<?= base_url($service['image_path']) ?>" alt="<?= $service['alt_text'] ?>" style="max-width: 100px;">
+                                            <?php else: ?>
+                                                No Image
+                                            <?php endif; ?>
+                                        </td>
+                                        <td><?= $service['description'] ?></td>
+                                        <td>
+                                            <a href="<?= base_url('admin/service-management/delete/' . $service['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -109,8 +125,14 @@
             </div>
         </div>
     </div>
+     <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/jquery-1.10.2.js') ?>"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/bootstrap.min.js') ?>"></script>
+      <!-- CUSTOM SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/custom.js') ?>"></script>
+    
 </body>
 </html>

@@ -11,15 +11,7 @@ class WorkRequestModel extends Model
     protected $returnType = 'array';
     protected $useTimestamps = true;
 
-    public function search($term)
-    {
-        return $this->like('name', $term)
-                    ->orLike('email', $term)
-                    ->orLike('phone', $term)
-                    ->findAll();
-    }
-
-    public function exportData()
+    public function getAllWorkRequests()
     {
         return $this->findAll();
     }

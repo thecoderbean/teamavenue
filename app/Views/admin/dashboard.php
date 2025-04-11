@@ -27,7 +27,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img src="<?= base_url('asset/assets/img/logo.png') ?>" />
+                    <img src="<?= base_url('assets/img/logo.png') ?>" />
 
                     </a>
                     
@@ -47,30 +47,30 @@
 
 
                     <li class="active-link">
-                        <a href="index.html" ><i class="fa fa-desktop "></i>Dashboard <span class="badge">Included</span></a>
+                        <a href="dashboard" ><i class="fa fa-desktop "></i>Dashboard </a>
                     </li>
                    
 
                     <li>
-                        <a href="ui.html"><i class="fa fa-users "></i>Users Management  <span class="badge">Included</span></a>
+                        <a href="work-requests"><i class="fa fa-users "></i>Users Management  </a>
                     </li>
                     <li>
-                        <a href="blank.html"><i class="fa fa-rss "></i>Blog Management  <span class="badge">Included</span></a>
-                    </li>
-
-
-                    <li>
-                        <a href="#"><i class="fa fa-cogs "></i>Service Management</a>
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-user"></i>Staff Management</a>
+                        <a href="blog-management"><i class="fa fa-rss "></i>Blog Management  </a>
                     </li>
 
+
                     <li>
-                        <a href="#"><i class="fa fa-lock "></i>Admin Management </a>
+                        <a href="service-management"><i class="fa fa-cogs "></i>Service Management</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>My Link Five </a>
+                        <a href="staff-management"><i class="fa fa-user"></i>Staff Management</a>
+                    </li>
+
+                    <li>
+                        <a href="admin-management"><i class="fa fa-lock "></i>Admin Management </a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-edit "></i>My Link Five </a><span class="badge">deactivated</span>
                     </li>
                     
                 </ul>
@@ -99,9 +99,9 @@
                 <div class="row text-center pad-top">
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="blank.html" >
+                           <a href="work-requests" >
                            <i class="fa fa-users fa-5x"></i>
-                      <h4>Users Management</h4>
+                      <h4>Users</h4>
                       </a>
                       </div>
                   </div>
@@ -109,7 +109,7 @@
                       <div class="div-square">
                            <a href="blank.html" >
                            <i class="fa fa-rss fa-5x"></i>
-                      <h4>Blog Management</h4>
+                      <h4>Blogs</h4>
                       </a>
                       </div>
                      
@@ -117,9 +117,9 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="blank.html" >
+                           <a href="service-management" >
                            <i class="fa fa-cogs fa-5x"></i>
-                      <h4>Service Management</h4>
+                      <h4>Services</h4>
                       </a>
                       </div>
                      
@@ -129,7 +129,7 @@
                       <div class="div-square">
                            <a href="blank.html" >
                            <i class="fa fa-user fa-5x"></i>   
-                      <h4>Staff Management</h4>
+                      <h4>Staffs</h4>
                       </a>
                       </div>
                      
@@ -139,7 +139,7 @@
                       <div class="div-square">
                            <a href="blank.html" >
                            <i class="fa fa-lock fa-5x"></i>
-                      <h4>Admin Management</h4>
+                      <h4>Admins</h4>
                       </a>
                       </div>
                      

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
+      <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Users Management - TeamAvenues.com</title>
+    <title>TeamAvenues.com</title>
+	<!-- BOOTSTRAP STYLES-->
     <link href="<?= base_url('asset/assets/css/bootstrap.css') ?>" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
     <link href="<?= base_url('asset/assets/css/font-awesome.css') ?>" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
     <link href="<?= base_url('asset/assets/css/custom.css') ?>" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 <body>
     <div id="wrapper">
@@ -20,7 +24,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img src="<?= base_url('asset/assets/img/logo.png') ?>" />
+                        <img src="<?= base_url('assets/img/logo.png') ?>" />
                     </a>
                 </div>
                 <span class="logout-spn">
@@ -35,7 +39,7 @@
                         <a href="<?= base_url('admin/dashboard') ?>"><i class="fa fa-desktop"></i>Dashboard <span class="badge">Included</span></a>
                     </li>
                     <li class="active-link">
-                        <a href="<?= base_url('admin/users-management') ?>"><i class="fa fa-users"></i>Users Management <span class="badge">Included</span></a>
+                        <a href="<?= base_url('admin/work-requests') ?>"><i class="fa fa-users"></i>Work Requests <span class="badge">Included</span></a>
                     </li>
                     <li>
                         <a href="<?= base_url('admin/blog-management') ?>"><i class="fa fa-rss"></i>Blog Management <span class="badge">Included</span></a>
@@ -56,61 +60,48 @@
             </div>
         </nav>
         <div id="page-wrapper">
-            <div id="page-inner">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>USERS MANAGEMENT</h2>
-                    </div>
-                </div>
-                <hr />
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="searchInput" placeholder="Search by name, email, or phone" value="<?= $this->request->getGet('search') ?>">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" id="searchBtn">Search</button>
-                            </span>
-                        </div>
-                        <br />
-                        <a href="<?= base_url('admin/export-excel') ?>" class="btn btn-success">Export to Excel</a>
-                        <?php if (session()->getFlashdata('message')): ?>
-                            <div class="alert alert-success"><?= session()->getFlashdata('message') ?></div>
-                        <?php endif; ?>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Services</th>
-                                    <th>Created At</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($workRequests as $request): ?>
-                                    <tr>
-                                        <td><?= $request['id'] ?></td>
-                                        <td><?= $request['name'] ?></td>
-                                        <td><?= $request['email'] ?></td>
-                                        <td><?= $request['phone'] ?></td>
-                                        <td><?= implode(', ', json_decode($request['services'], true)) ?></td>
-                                        <td><?= $request['created_at'] ?></td>
-                                        <td>
-                                            <a href="mailto:<?= $request['email'] ?>" class="btn btn-info btn-sm">Email</a>
-                                            <a href="tel:<?= $request['phone'] ?>" class="btn btn-warning btn-sm">Call</a>
-                                            <a href="<?= base_url('admin/edit-request/' . $request['id']) ?>" class="btn btn-primary btn-sm">Edit</a>
-                                            <a href="<?= base_url('admin/delete-request/' . $request['id']) ?>" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
-                                            <button class="btn btn-success btn-sm" onclick="sendEmail(<?= $request['id'] ?>)">Send Custom Email</button>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
+        <div id="page-inner">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>WORK REQUESTS MANAGEMENT</h2>
                 </div>
             </div>
+            <hr />
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- Search Input and Export Button -->
+                    <div style="margin-bottom: 20px;">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Search by Name, Email, or Phone" style="width: 300px; display: inline-block; margin-right: 10px;">
+                        <button id="exportBtn" class="btn btn-primary">Export to Excel</button>
+                    </div>
+                    <!-- Table -->
+                    <table class="table table-striped" id="workRequestsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Services</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($workRequests as $request): ?>
+                                <tr>
+                                    <td><?= $request['id'] ?></td>
+                                    <td><?= $request['name'] ?></td>
+                                    <td><?= $request['email'] ?></td>
+                                    <td><?= $request['phone'] ?></td>
+                                    <td><?= implode(', ', json_decode($request['services'], true)) ?></td>
+                                    <td><?= $request['created_at'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
     <div class="footer">
@@ -120,23 +111,43 @@
             </div>
         </div>
     </div>
+       <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/jquery-1.10.2.js') ?>"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/bootstrap.min.js') ?>"></script>
+      <!-- CUSTOM SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/custom.js') ?>"></script>
-    <script>
-        document.getElementById('searchBtn').addEventListener('click', function() {
-            const searchTerm = document.getElementById('searchInput').value;
-            window.location.href = '<?= base_url('admin/users-management') ?>?search=' + encodeURIComponent(searchTerm);
-        });
+   <!-- XLSX Library for Excel Export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<!-- Custom JavaScript for Search and Export -->
+<script>
+    // Search Functionality
+    document.getElementById('searchInput').addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const rows = document.querySelectorAll('#workRequestsTable tbody tr');
 
-        function sendEmail(id) {
-            fetch('<?= base_url('admin/send-email/') ?>' + id, {
-                method: 'POST'
-            })
-            .then(response => response.json())
-            .then(data => alert(data.message))
-            .catch(error => alert('Error: ' + error.message));
-        }
-    </script>
+        rows.forEach(row => {
+            const name = row.cells[1].textContent.toLowerCase();
+            const email = row.cells[2].textContent.toLowerCase();
+            const phone = row.cells[3].textContent.toLowerCase();
+
+            if (name.includes(searchTerm) || email.includes(searchTerm) || phone.includes(searchTerm)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+
+    // Export to Excel Functionality
+    document.getElementById('exportBtn').addEventListener('click', function() {
+        const table = document.getElementById('workRequestsTable');
+        const wb = XLSX.utils.table_to_book(table, { sheet: "Work Requests" });
+        XLSX.writeFile(wb, 'Work_Requests.xlsx');
+    });
+</script> 
+   
 </body>
 </html>

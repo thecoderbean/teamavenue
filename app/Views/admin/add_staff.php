@@ -3,10 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Edit Request - TeamAvenues.com</title>
+    <title>TeamAvenues.com</title>
+    <!-- BOOTSTRAP STYLES-->
     <link href="<?= base_url('asset/assets/css/bootstrap.css') ?>" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
     <link href="<?= base_url('asset/assets/css/font-awesome.css') ?>" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
     <link href="<?= base_url('asset/assets/css/custom.css') ?>" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 <body>
@@ -20,7 +24,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="#">
-                        <img src="<?= base_url('asset/assets/img/logo.png') ?>" />
+                        <img src="<?= base_url('assets/img/logo.png') ?>" />
                     </a>
                 </div>
                 <span class="logout-spn">
@@ -31,31 +35,26 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-                <li>
-                        <a href="dashboard" ><i class="fa fa-desktop "></i>Dashboard </a>
-                    </li>
-                   
-
                     <li>
-                        <a href="work-requests"><i class="fa fa-users "></i>Users Management  </a>
+                        <a href="<?= base_url('admin/dashboard') ?>"><i class="fa fa-desktop"></i>Dashboard </a>
                     </li>
                     <li>
-                        <a href="blog-management"><i class="fa fa-rss "></i>Blog Management  </a>
+                        <a href="<?= base_url('admin/work-requests') ?>"><i class="fa fa-users"></i>Work Requests <span class="badge">Included</span></a>
                     </li>
-
-
+                    <li>
+                        <a href="<?= base_url('admin/blog-management') ?>"><i class="fa fa-rss"></i>Blog Management <span class="badge">Included</span></a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url('admin/service-management') ?>"><i class="fa fa-cogs"></i>Service Management</a>
+                    </li>
                     <li class="active-link">
-                        <a href="service-management"><i class="fa fa-cogs "></i>Service Management</a>
+                        <a href="<?= base_url('admin/staff-management') ?>"><i class="fa fa-user"></i>Staff Management</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-user"></i>Staff Management</a>
-                    </li>
-
-                    <li>
-                        <a href="#"><i class="fa fa-lock "></i>Admin Management </a>
+                        <a href="#"><i class="fa fa-lock"></i>Admin Management</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-edit "></i>My Link Five </a><span class="badge">deactivated</span>
+                        <a href="#"><i class="fa fa-edit"></i>My Link Five</a><span class="badge">Upcomming</span></a>
                     </li>
                 </ul>
             </div>
@@ -64,39 +63,34 @@
             <div id="page-inner">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>EDIT WORK REQUEST</h2>
+                        <h2>ADD NEW STAFF</h2>
                     </div>
                 </div>
                 <hr />
                 <div class="row">
                     <div class="col-lg-12">
-                        <form method="post" action="<?= base_url('admin/edit-request/' . $request['id']) ?>">
+                        <form method="post" action="<?= base_url('admin/staff-management/add') ?>" enctype="multipart/form-data">
+                            <?= csrf_field() ?>
                             <div class="form-group">
-                                <label>Name</label>
-                                <input type="text" name="name" class="form-control" value="<?= $request['name'] ?>" required>
+                                <label for="name">Name</label>
+                                <input type="text" name="name" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" name="email" class="form-control" value="<?= $request['email'] ?>" required>
+                                <label for="position">Position</label>
+                                <input type="text" name="position" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Phone</label>
-                                <input type="text" name="phone" class="form-control" value="<?= $request['phone'] ?>" required>
+                                <label for="image">Image</label>
+                                <input type="file" name="image" class="form-control-file" accept="image/*" required>
                             </div>
-                            <div class="form-group">
-                                <label>Services</label>
-                                <?php $services = json_decode($request['services'], true); ?>
-                                <select name="services[]" class="form-control" multiple required>
-                                    <option value="training" <?= in_array('training', $services) ? 'selected' : '' ?>>Training</option>
-                                    <option value="stock_brokering" <?= in_array('stock_brokering', $services) ? 'selected' : '' ?>>Stock Brokering</option>
-                                    <option value="tax_filing" <?= in_array('tax_filing', $services) ? 'selected' : '' ?>>Tax Filing</option>
-                                    <option value="financial_planning" <?= in_array('financial_planning', $services) ? 'selected' : '' ?>>Financial Planning</option>
-                                    <option value="dmat_account" <?= in_array('dmat_account', $services) ? 'selected' : '' ?>>Dmat Account</option>
-                                    <option value="live_support" <?= in_array('live_support', $services) ? 'selected' : '' ?>>Live Market Support</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="submit" class="btn btn-primary">Submit Staff</button>
                         </form>
+                        <?php if (session()->getFlashdata('success')): ?>
+                            <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+                        <?php endif; ?>
+                        <?php if (session()->getFlashdata('error')): ?>
+                            <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -109,8 +103,13 @@
             </div>
         </div>
     </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/jquery-1.10.2.js') ?>"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/bootstrap.min.js') ?>"></script>
+    <!-- CUSTOM SCRIPTS -->
     <script src="<?= base_url('asset/assets/js/custom.js') ?>"></script>
 </body>
 </html>

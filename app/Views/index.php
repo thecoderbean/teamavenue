@@ -13,6 +13,109 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>/* Slider container */
+.slider-staff {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+/* Each staff card */
+.staff-item {
+    text-align: center;
+    transition: all 0.5s ease;
+    padding: 20px;
+}
+
+/* Image in circular frame */
+.staff-item-image img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #eee;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.staff-item-image img:hover {
+    transform: scale(1.05);
+}
+
+/* Name style */
+.staff-item-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #333;
+}
+
+/* Position style */
+.staff-item-description {
+    font-size: 1rem;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Arrows */
+.staff-prev,
+.staff-next {
+    cursor: pointer;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    z-index: 10;
+    user-select: none;
+    transition: color 0.3s ease;
+}
+
+.staff-prev:hover,
+.staff-next:hover {
+    color: #000;
+}
+
+.staff-prev { left: 10px; }
+.staff-next { right: 10px; }
+/* Base style for arrows */
+.staff-prev,
+.staff-next {
+    cursor: pointer;
+    font-size: 2.5rem; /* default size for mobile */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #555;
+    z-index: 10;
+    user-select: none;
+    transition: color 0.3s ease;
+    padding: 5px;
+}
+
+/* On desktop, reduce size */
+@media (min-width: 768px) {
+    .staff-prev,
+    .staff-next {
+        font-size: 1.5rem;
+        top: 45%;
+        color: #444;
+    }
+}
+
+.staff-prev:hover,
+.staff-next:hover {
+    color: #000;
+}
+
+.staff-prev { left: 10px; }
+.staff-next { right: 10px; }
+
+
+</style>
 </head>
 <body>
 
@@ -44,6 +147,7 @@
             <li><span>About</span></li>
             <li><span>Sip-Calculator</span></li>
             <li><span>Works</span></li>
+            <li><span>Staff</span></li>
             <li><span>Contact</span></li>
             <li><span>Hire us</span></li>
           </ul>
@@ -96,7 +200,7 @@
                 <div class="team-image">
               <img src="assets/img/about.png" alt="Team Image">
              </div>
-             <a href="blog.php">
+             <a href="/blog">
                     <button class="blog-button" id="blogBtn">Take a look at our blog</button>
                     </a>
                 </div>
@@ -162,76 +266,67 @@
 
           <!-- Work Section -->
           <li class="l-section section">
-            <div class="work">
-              <div class="work--lockup">
-                <ul class="slider">
-                  <li class="slider--item slider--item-left">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <img src="assets/img/work-training.jpg" alt="Victory">
-                      </div>
-                      <p class="slider--item-title">Dmat Account</p>
-                      <p class="slider--item-description">Open your Dmat account with us for seamless trading.</p>
-                    </a>
-                  </li>
-                  <li class="slider--item slider--item-left">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <img src="assets/img/work-training.jpg" alt="work-training">
-                      </div>
-                      <p class="slider--item-title">Training</p>
-                      <p class="slider--item-description">Comprehensive training programs for financial literacy and investment strategies.</p>
-                    </a>
-                  </li>
-                  <li class="slider--item slider--item-center">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <img src="assets/img/work-training.jpg" alt="Metiew and Smith">
-                      </div>
-                      <p class="slider--item-title">Stock Brokering</p>
-                      <p class="slider--item-description">Intermediary between you and yor stocks, providing investment advice and management</p>
-                    </a>
-                  </li>
-                  <li class="slider--item slider--item-right">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <img src="assets/img/work-training.jpg" alt="Alex Nowak">
-                      </div>
-                      <p class="slider--item-title">Financial Planning</p>
-                      <p class="slider--item-description">Expert financial planning advice for your future goals.</p>
-                    </a>
-                  </li>
-                  <li class="slider--item slider--item-right">
-                    <a href="#0">
-                      <div class="slider--item-image">
-                        <img src="assets/img/work-training.jpg" alt="Alex Nowak">
-                      </div>
-                      <p class="slider--item-title">Tax Filing</p>
-                      <p class="slider--item-description">Hassle-free tax filing services to ensure compliance.</p>
-                    </a>
-                  </li>
-                </ul>
-                <div class="slider--prev">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                    <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                      <path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
-                      c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
-                      c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
-                    </g>
-                  </svg>
+                <div class="work">
+                    <div class="work--lockup">
+                        <ul class="slider">
+                        <?php foreach ($services as $service): ?>
+                          <li class="slider--item slider--item-<?php echo $service['id'] % 4 == 0 ? 'left' : ($service['id'] % 4 == 1 ? 'center' : 'right'); ?>">
+                              <a href="#0">
+                                  <div class="slider--item-image">
+                                      <img src="<?= base_url($service['image_path']) ?>" alt="<?= esc($service['alt_text']) ?>">
+                                  </div>
+                                  <p class="slider--item-title"><?= esc($service['title']) ?></p>
+                                  <p class="slider--item-description"><?= esc($service['description']) ?></p>
+                              </a>
+                          </li>
+                      <?php endforeach; ?>
+
+                        </ul>
+                        <div class="slider--prev">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                                <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                                    <path d="M561,1169C525,1155,10,640,3,612c-3-13,1-36,8-52c8-15,134-145,281-289C527,41,562,10,590,10c22,0,41,9,61,29
+                                    c55,55,49,64-163,278L296,510h575c564,0,576,0,597,20c46,43,37,109-18,137c-19,10-159,13-590,13l-565,1l182,180
+                                    c101,99,187,188,193,199c16,30,12,57-12,84C631,1174,595,1183,561,1169z"/>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="slider--next">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
+                                <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
+                                    <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="slider--next">
-                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 150 118" style="enable-background:new 0 0 150 118;" xml:space="preserve">
-                    <g transform="translate(0.000000,118.000000) scale(0.100000,-0.100000)">
-                      <path d="M870,1167c-34-17-55-57-46-90c3-15,81-100,194-211l187-185l-565-1c-431,0-571-3-590-13c-55-28-64-94-18-137c21-20,33-20,597-20h575l-192-193C800,103,794,94,849,39c20-20,39-29,61-29c28,0,63,30,298,262c147,144,272,271,279,282c30,51,23,60-219,304C947,1180,926,1196,870,1167z"/>
-                    </g>
-                  </svg>
+            </li>
+
+            <!-- New Staff Section -->
+            <!-- Staff Section -->
+            <li class="l-section section">
+                <div class="work">
+                    <div class="work--lockup">
+                        <ul class="slider-staff">
+                            <?php foreach ($staff as $member): ?>
+                                <li class="staff-item">
+                                    <a href="#0">
+                                        <div class="staff-item-image">
+                                            <img src="<?= base_url($member['image_path']) ?>" alt="<?= esc($member['name']) ?>">
+                                        </div>
+                                        <p class="staff-item-title"><?= esc($member['name']) ?></p>
+                                        <p class="staff-item-description"><?= esc($member['position']) ?></p>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                        <div class="staff-prev">⟵</div>
+                        <div class="staff-next">⟶</div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </li>
+            </li>
 
           <li class="l-section section">
             <div class="contact">
@@ -361,6 +456,7 @@
     <li>About</li>
     <li><span>Sip-Calculator</span></li>
     <li>Works</li>
+    <li>Staff</li>
     <li>Contact</li>
     <li>Hire us</li>
   </ul>
@@ -407,6 +503,36 @@ function showMessage(type, message) {
         formMessages.fadeOut();
     }, 5000); // Hide after 5 seconds
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.querySelector(".slider-staff");
+    const items = slider.querySelectorAll(".staff-item");
+    const prev = document.querySelector(".staff-prev");
+    const next = document.querySelector(".staff-next");
+
+    let currentIndex = 0;
+
+    function updateSlider() {
+        items.forEach((item, index) => {
+            item.style.display = "none";
+        });
+        items[currentIndex].style.display = "block";
+    }
+
+    prev.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        updateSlider();
+    });
+
+    next.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateSlider();
+    });
+
+    updateSlider();
+});
+
 </script> 
+
 </body>
 </html>

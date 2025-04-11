@@ -2,21 +2,29 @@
 
 namespace App\Controllers;
 
-use App\Models\WorkRequestModel;
 use CodeIgniter\Controller;
+use App\Models\ServiceModel;
+use App\Models\StaffModel;
+use App\Models\WorkRequestModel;
 
 class WorkRequestController extends Controller
 {
-    protected $WorkRequestModel;
+    protected $serviceModel;
+    protected $staffModel;
+    protected $workRequestModel;
 
     public function __construct()
     {
-        $this->WorkRequestModel = new WorkRequestModel();
+        $this->serviceModel = new ServiceModel();
+        $this->staffModel = new StaffModel();
+        $this->workRequestModel = new WorkRequestModel();
     }
 
     public function index()
     {
-        return view('index'); // Make sure your form is in 'index.php'
+        $data['services'] = $this->serviceModel->getAllServices();
+        $data['staff'] = $this->staffModel->getAllStaff();
+        return view('index', $data);
     }
 
     public function submit()
@@ -27,15 +35,18 @@ class WorkRequestController extends Controller
             'name'    => 'required|min_length[3]|max_length[100]',
             'email'   => 'required|valid_email',
             'phone'   => 'required|numeric|min_length[10]|max_length[15]',
-            'services'=> 'permit_empty', // services optional
+            'services' => 'permit_empty', // services optional
         ];
 
         if (!$this->validate($rules)) {
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Validation failed',
-                'errors'  => $validation->getErrors()
-            ])->setStatusCode(400);
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Validation failed',
+                    'errors' => $validation->getErrors()
+                ])->setStatusCode(400);
+            }
+            return redirect()->back()->withInput()->with('error', 'Please correct the errors: ' . implode(', ', $validation->getErrors()));
         }
 
         $data = [
@@ -45,17 +56,23 @@ class WorkRequestController extends Controller
             'services' => json_encode($this->request->getPost('services') ?? []),
         ];
 
-        if ($this->WorkRequestModel->insert($data)) {
-            return $this->response->setJSON([
-                'success' => true,
-                'message' => 'Success, Our team will contact you soon!'
-            ]);
+        if ($this->workRequestModel->insert($data)) {
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'success' => true,
+                    'message' => 'Success, Our team will contact you soon!'
+                ]);
+            }
+            return redirect()->to('/')->with('message', 'Work request submitted successfully!');
         } else {
-            $dbError = $this->WorkRequestModel->db->error();
-            return $this->response->setJSON([
-                'success' => false,
-                'message' => 'Failed to submit request: ' . $dbError['message']
-            ])->setStatusCode(500);
+            $dbError = $this->workRequestModel->db->error();
+            if ($this->request->isAJAX()) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Failed to submit request: ' . $dbError['message']
+                ])->setStatusCode(500);
+            }
+            return redirect()->back()->with('error', 'Failed to submit request: ' . $dbError['message']);
         }
     }
 }
